@@ -4,7 +4,7 @@ import com.example.portfolio.exceptions.InvalidoProjetoStatusException;
 import com.example.portfolio.model.Pessoa;
 import com.example.portfolio.model.Projeto;
 import com.example.portfolio.repository.PessoaRepository;
-import com.example.portfolio.repository.ProjectRepository;
+import com.example.portfolio.repository.ProjetoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,17 +16,17 @@ import java.util.NoSuchElementException;
 public class ProjetoService {
 
     @Autowired
-    private ProjectRepository projectRepository;
+    private ProjetoRepository projetoRepository;
     @Autowired
     private PessoaRepository pessoaRepository;
 
     public boolean associarMembroAProjeto(Long projetoId, Long pessoaId) {
-        Projeto projeto = projectRepository.findById(projetoId).orElse(null);
+        Projeto projeto = projetoRepository.findById(projetoId).orElse(null);
         Pessoa pessoa = pessoaRepository.findById(pessoaId).orElse(null);
 
         if (projeto != null && pessoa != null && pessoa.getFuncionario()) {
             projeto.adicionarMembro(pessoa);
-            projectRepository.save(projeto);
+            projetoRepository.save(projeto);
             return true;
         }
 
@@ -34,20 +34,20 @@ public class ProjetoService {
     }
 
     public List<Projeto> getAllProjects() {
-        return projectRepository.findAll();
+        return projetoRepository.findAll();
     }
 
     public Projeto getProjectById(Long id) {
-        return projectRepository.findById(id).orElse(null);
+        return projetoRepository.findById(id).orElse(null);
     }
 
     public Projeto createProject(Projeto projeto) {
-        return projectRepository.save(projeto);
+        return projetoRepository.save(projeto);
     }
 
     public Projeto atualizarProjeto(Long id, Projeto projeto) {
 
-        Projeto projetoExistente = projectRepository.findById(id)
+        Projeto projetoExistente = projetoRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Projeto não encontrado"));
 
         projetoExistente.setNome(projeto.getNome());
@@ -60,15 +60,15 @@ public class ProjetoService {
         projetoExistente.setStatus(projeto.getStatus());
         projetoExistente.setRisco(projeto.getRisco());
 
-        return projectRepository.save(projetoExistente);
+        return projetoRepository.save(projetoExistente);
 
     }
 
     public boolean deletarProjeto(Long id) {
-        Projeto existingProjeto = projectRepository.findById(id).orElse(null);
+        Projeto existingProjeto = projetoRepository.findById(id).orElse(null);
         if (existingProjeto != null) {
             if (isDeletionAllowed(existingProjeto.getStatus())) {
-                projectRepository.delete(existingProjeto);
+                projetoRepository.delete(existingProjeto);
                 return true;
             } else {
                 throw new InvalidoProjetoStatusException("Não é possível deletar um projeto com status " + existingProjeto.getStatus());
