@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Projeto</title>
+</head>
+<body>
+<h1>Detalhes do Projeto</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <td th:text="${projeto.id}"></td>
+    </tr>
+    <tr>
+        <th>Nome do Projeto</th>
+        <td th:text="${projeto.nome}"></td>
+    </tr>
+    <tr>
+        <th>Data de Início</th>
+        <td th:text="${projeto.dataInicio}"></td>
+    </tr>
+    <tr>
+        <th>Data de Previsão de Fim</th>
+        <td th:text="${projeto.dataPrevisaoFim}"></td>
+    </tr>
+    <tr>
+        <th>Data de Fim</th>
+        <td th:text="${projeto.dataFim}"></td>
+    </tr>
+    <tr>
+        <th>Descrição</th>
+        <td th:text="${projeto.descricao}"></td>
+    </tr>
+    <tr>
+        <th>Status</th>
+        <td th:text="${projeto.status}"></td>
+    </tr>
+    <tr>
+        <th>Orçamento</th>
+        <td th:text="${projeto.orcamento}"></td>
+    </tr>
+    <tr>
+        <th>ID do Gerente</th>
+        <td th:text="${projeto.idGerente}"></td>
+    </tr>
+    <tr>
+        <th>Risco</th>
+        <td th:text="${projeto.risco}"></td>
+    </tr>
+</table>
+</body>
+</html>

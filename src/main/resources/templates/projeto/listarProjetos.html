@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Projetos</title>
+</head>
+<body>
+<h1>Listagem de Projetos</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome do Projeto</th>
+        <th>Descrição</th>
+        <th>Data de Início</th>
+        <th>Data de Previsão de Fim</th>
+        <th>Data de Fim</th>
+        <th>Status</th>
+        <th>Orçamento</th>
+        <th>ID do Gerente</th>
+        <th>Risco</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Use Thymeleaf para iterar sobre a lista de projetos -->
+    <tr th:each="projeto : ${projetos}">
+        <td th:text="${projeto.id}"></td>
+        <td th:text="${projeto.nome}"></td>
+        <td th:text="${projeto.descricao}"></td>
+        <td th:text="${projeto.dataInicio}"></td>
+        <td th:text="${projeto.dataPrevisaoFim}"></td>
+        <td th:text="${projeto.dataFim}"></td>
+        <td th:text="${projeto.status}"></td>
+        <td th:text="${projeto.orcamento}"></td>
+        <td th:text="${projeto.idGerente}"></td>
+        <td th:text="${projeto.risco}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
