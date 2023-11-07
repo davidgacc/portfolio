@@ -97,7 +97,6 @@ public class ProjetoServiceTest {
 
     @Test
     void testAssociarMembroAProjeto() {
-
         //begin
         Pessoa pessoa = new Pessoa();
         pessoa.setFuncionario(true);

@@ -17,6 +17,7 @@ public class PessoaService {
     public Pessoa criarPessoa(Pessoa novaPessoa) {
         return pessoaRepository.save(novaPessoa);
     }
+
     public Pessoa obterPessoaPorId(Long id) {
         return pessoaRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Pessoa não encontrada"));
