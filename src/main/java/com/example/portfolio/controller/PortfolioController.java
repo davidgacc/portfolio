@@ -19,6 +19,7 @@ import java.util.NoSuchElementException;
 
 @Controller
 @RequestMapping("/projetos")
+@CrossOrigin(origins = "*")
 public class PortfolioController {
     @Autowired
     private ProjetoService projetoService;
@@ -28,10 +29,14 @@ public class PortfolioController {
     private PessoaService pessoaService;
 
     @GetMapping()
-    public String listarProjetos(Model model) {
+    public ResponseEntity<List<Projeto>> listarProjetos() {
         List<Projeto> projetos = projetoService.getAllProjects();
-        model.addAttribute("projetos", projetos);
-        return "projeto/listarProjetos";
+        //model.addAttribute("projetos", projetos);
+        if (projetos.isEmpty()) {
+            return ResponseEntity.noContent().build(); // Retorna um código de status 204 No Content
+        } else {
+            return ResponseEntity.ok(projetos); // Retorna a lista de projetos com código de status 200 OK
+        }
     }
 
     @GetMapping("/{id}")
